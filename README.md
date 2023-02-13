@@ -14,7 +14,7 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 - **`2`** - turn left.
 - **`3`** - turn right.
 
-The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
+The task is episodic, and in the assignment, the agent must get an average score of +13 over 100 consecutive episodes. However in the submission few improvement were made and the agent get an average score of +15 over 100 consecutive episodes
 
 ### Getting Started
 
@@ -28,24 +28,27 @@ The task is episodic, and in order to solve the environment, your agent must get
 
     (_For AWS_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
 
-2. Place the file in the course GitHub repository, in the `p1_navigation/` folder, and unzip (or decompress) the file. 
+2. Place the file in the course GitHub repository, in the base folder, and unzip (or decompress) the file. Ib the `Navigation.ipynb` change the cell 
+    ```python
+   env = UnityEnvironment(file_name="Banana_Windows_x86_64\Banana.exe")
+   ```
+   with the file name and folder corresponding to your operating system
 
-### Instructions
+### Description
 
-Follow the instructions in `Navigation.ipynb` to get started with training your own agent!  
-
-### (Optional) Challenge: Learning from Pixels
-
-After you have successfully completed the project, if you're looking for an additional challenge, you have come to the right place!  In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  A more challenging task would be to learn directly from pixels!
-
-To solve this harder task, you'll need to download a new Unity environment.  This environment is almost identical to the project environment, where the only difference is that the state is an 84 x 84 RGB image, corresponding to the agent's first-person view.  (**Note**: Udacity students should not submit a project with this new environment.)
-
-You need only select the environment that matches your operating system:
-- Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Linux.zip)
-- Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana.app.zip)
-- Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86.zip)
-- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
-
-Then, place the file in the `p1_navigation/` folder in the course GitHub repository, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
-
-(_For AWS_) If you'd like to train the agent on AWS, you must follow the instructions to [set up X Server](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above.
+*   The complete code is inside the `Navigation.ipynb` running the cells in order will 
+    *   Create the environment ( do not close unitity window if it stays loading for too long as you need to run the other cells while it's open )
+    *   Define the Qnetwork
+    *   Define the Agent an initialise it
+    *   Define dqn algoritm
+    *   Train the agent
+    *   Explore the result
+    *   Test the model in test mode 
+    *   Close the environment ( this will close the unity window )
+*   The work is based on `Deep Reinforcement Learning with Double Q-learning`
+*   The base implementation is based on `udacity-deep-reinforcement-learning` implementation of dqn
+*   This repo contains these files :
+    - `cgeckpoint.pth`: saved model weights for the Double DQN model
+    - `Navigation.ipynb`: notebook containing the solution
+    - `results\dddqn_new_scores.png`: score evolution during training of the model
+*   To run the project the dependencies required are in the `requirements.txt` file with instructions how to create conda environment, One major difference is the Torch version as the oldest available version of torch in python 3.6 currently is 1.7.0 which is different from the recommended version.
